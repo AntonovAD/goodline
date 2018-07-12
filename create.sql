@@ -51,3 +51,19 @@ constraint orders_customer_id_fk foreign key (customer_id) references customer (
 status varchar2 (25)
 constraint orders_status_nn not null
 );
+
+create table order_list
+(order_id number (3),
+item_list_id number (3),
+quantity number (6)
+constraint order_list_quantity_nn not null
+);
+
+alter table order_list
+add constraint order_list_pk primary key (order_id, item_list_id);
+
+alter table order_list
+add constraint order_list_order_id_fk foreign key (order_id) references orders (id);
+
+alter table order_list
+add constraint order_list_item_list_id_fk foreign key (item_list_id) references item_list (id);
